@@ -1,12 +1,17 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Point p1 = new Point(10,10);
-        Point p2 = new Point(100, 100);
-        Segment segment = new Segment(p1, p2);
-        System.out.println(segment.toSvg());
+        Style style = new Style("lime", "red", null);
+        Point point1 = new Point(0, 100);
+        Point point2 = new Point(100, 102);
 
-        Point[] points = new Point[10];
+        Segment line = new Segment(point1, point2);
+        Polygon polygon = Polygon.sqare(line, style);
+
+        Ellipse ellipse = new Ellipse(new Point(150, 200), 20, 30, style);
+
+        SvgScene svgScene = new SvgScene();
+        svgScene.addShape(polygon);
+        svgScene.addShape(ellipse);
+        svgScene.saveHtml("./test.html");
     }
 }
