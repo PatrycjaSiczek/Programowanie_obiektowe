@@ -16,12 +16,16 @@ public class Main {
         Vec2 point1 = new Vec2(0, 100);
         Vec2 point2 = new Vec2(100, 102);
         Vec2 point3 = new Vec2(50, 100);
-        SolidFilledPolygon solidFilledPolygon= new SolidFilledPolygon(3,);
+        Polygon polygon = new Polygon(3,new Style(null,null,null));
+        SolidFilledPolygon solidFilledPolygon= new SolidFilledPolygon(3,"red");
         solidFilledPolygon.setPoint(0,point1);
         solidFilledPolygon.setPoint(1,point2);
         solidFilledPolygon.setPoint(2,point3);
 
-        SvgScene svgscene
-
+        Shape filledPolygon = new SolidFillShapeDecorator(polygon,"blue");
+        Shape transformedPolygon = TransformationDecorator.Builder().setShape(filledPolygon).setTranslateVector(point3).build();
+        SvgScene svgScene = new SvgScene();
+        svgScene.addShape(filledpolygon);
+        svgScene.saveHtml("./test.html");
     }
 }
